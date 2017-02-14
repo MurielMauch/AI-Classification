@@ -1,0 +1,30 @@
+codigo arvore regressa
+
+	setwd("/home/muriel/Documents/AI-Classification/ArvoredeRegressao")
+	
+	install.packages("rpart")
+	library("rpart")
+	
+	regression_tree = read.csv("forestfires.csv", header = TRUE)
+	modelo_rt <- rpart(area ~ X + Y + month + day + FFMC + DMC + DC + ISI + temp + RH + wind + rain, data = regression_tree, method = "anova")
+
+	rt_test <- read.csv("forestfires_ts.csv", header = TRUE)
+
+	install.packages("rpart.plot")
+	library("rpart.plot")
+	
+	plot_rt <- rpart.plot(modelo_rt, type=3)
+	test_rt <- predict(modelo_rt, rt_test, type="vector")
+
+	soma = 0
+	for(i in 1:130){
+		soma = soma + ((test_rt[i] - rt_test$area[i])^2)
+	}
+	erro_medio_quadratico = soma/130
+	
+	soma_precisao = 0
+	for(i in 1:130){
+		soma_precisao = soma_precisao + abs((test_rt[i] - rt_test$area[i]))
+	}
+	distancia_media_absoluta = soma_precisao/130
+	

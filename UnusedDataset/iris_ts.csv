@@ -1,4 +1,4 @@
-sepal length in cm ,sepal width in cm ,petal length in cm ,petal width in cm ,"class{Iris Setosa, Iris Versicolour, Iris Virginica}"
+sepal_length_in_cm ,sepal_width_in_cm ,petal_length_in_cm ,petal_width_in_cm ,class
 6.9,3.2,5.7,2.3,Iris-virginica
 5.6,2.8,4.9,2,Iris-virginica
 7.7,2.8,6.7,2,Iris-virginica
@@ -29,3 +29,10 @@ sepal length in cm ,sepal width in cm ,petal length in cm ,petal width in cm�
 6.5,3,5.2,2,Iris-virginica
 6.2,3.4,5.4,2.3,Iris-virginica
 5.9,3,5.1,1.8,Iris-virginica
+5.3,3.7,1.5,0.2,Iris-setosa
+5,3.3,1.4,0.2,Iris-setosa
+7,3.2,4.7,1.4,Iris-versicolor
+6.3,3.3,6,2.5,Iris-virginica
+5.8,2.7,5.1,1.9,Iris-virginica
+4.6,3.2,1.4,0.2,Iris-setosa
+6.4,3.2,4.5,1.5,Iris-versicolor
