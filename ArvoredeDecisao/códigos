@@ -6,20 +6,27 @@ IA
 	library("rpart")
 	
 	decision_tree = read.csv("car_tr.csv", header = TRUE)
-	modelo_dt <- rpart(class ~ buying + maint + doors + persons + lug_boot + safety, data = dt, method = "class", control = rpart.control(minsplit = 1), parms = list(split = "Information"))
 
-	dt_test <- read.csv("car_ts.csv", header = TRUE)
+	install.packages(caTools)
+	library(caTools)
+
+	decision_tree$sample = sample.split(decision_tree$class,SplitRatio=.75)
+
+	train=subset(decision_tree, decision_tree$sample==TRUE)
+	test=subset(decision_tree, decision_tree$sample==FALSE) 
+
+	modelo_arvore <- rpart(class ~ buying + maint + doors + persons + lug_boot + safety, data = train, method = "class", control = rpart.control(minsplit = 1), parms = list(split = "Information"))
 
 	install.packages("rpart.plot")
 	library("rpart.plot")
 	
-	plot_dt <- rpart.plot(modelo_ad, type=3)
-	test_dt <- predict(modelo_ad, dt_test, type="class")
+	plot_arvore <- rpart.plot(modelo_arvore, type=3)
+	predict_test <- predict(modelo_arvore, test, type="class")
 
-	matrix_confusao <- table(dt_test$class, test_dt)
+	matrix_confusao <- table(test$class, predict_test)
 
-	porcentagem_erro <- (matrix_confusao[1,2]+matrix_confusao[1,3]+matrix_confusao[1,4]+matrix_confusao[2,1]+matrix_confusao[2,3]+matrix_confusao[2,4]+matrix_confusao[3,1]+matrix_confusao[3,2]+matrix_confusao[3,4]+matrix_confusao[4,1]+matrix_confusao[4,2]+matrix_confusao[4,3])/345
+	porcentagem_erro <- (matrix_confusao[1,2]+matrix_confusao[1,3]+matrix_confusao[1,4]+matrix_confusao[2,1]+matrix_confusao[2,3]+matrix_confusao[2,4]+matrix_confusao[3,1]+matrix_confusao[3,2]+matrix_confusao[3,4]+matrix_confusao[4,1]+matrix_confusao[4,2]+matrix_confusao[4,3])/324
 
-	precisao <- 1 - porcentagem_err
+	precisao <- 1 - porcentagem_erro
 	
 	
