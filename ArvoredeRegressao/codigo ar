@@ -1,12 +1,13 @@
 codigo arvore regressa
 
-	setwd("/home/muriel/Documents/AI-Classification/ArvoredeRegressao")
+	setwd("Documents/AI-Classification/ArvoredeRegressao")
 	
 	install.packages("rpart")
 	library("rpart")
 	
 	regression_tree = read.csv("forestfires.csv", header = TRUE)
-	modelo_rt <- rpart(area ~ X + Y + month + day + FFMC + DMC + DC + ISI + temp + RH + wind + rain, data = regression_tree, method = "anova")
+
+	modelo_arvore_regressao <- rpart(area ~ X + Y + month + day + FFMC + DMC + DC + ISI + temp + RH + wind + rain, data = regression_tree, method = "anova")
 
 	rt_test <- read.csv("forestfires_ts.csv", header = TRUE)
 
