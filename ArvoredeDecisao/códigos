@@ -5,7 +5,7 @@ IA
 	install.packages("rpart")
 	library("rpart")
 	
-	decision_tree = read.csv("car_tr.csv", header = TRUE)
+	decision_tree = read.csv("car.csv", header = TRUE)
 
 	install.packages(caTools)
 	library(caTools)
